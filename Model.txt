@@ -1,0 +1,25 @@
+# migrate database after adding a new model 
+# upgrade development database
+
+rake db:migrate   
+
+# upgrade test database
+
+rake environment RAILS_ENV=test db:migrate
+
+#########################################
+########### MODEL DEFINITIONS ###########
+#########################################
+1) 
+# TypeSet: This table will contain the various types exist in the system.
+# Ex. equipment_type, user_type etc.
+# run the following command to create the model
+
+ rails g model TypeSet code:string name:string description:string active:boolean
+
+ 2) 
+# TypeElement: This table will contain elements of the types recursively.
+# Ex. elements of equipment_type, elements of user_type etc.
+# run the following command to create the model
+
+ rails g model TypeElement code:string name:string description:string parent_id:integer active:boolean

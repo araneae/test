@@ -1,0 +1,13 @@
+<h2>Edit Type</h2>
+
+<%= form_for @type_set do |t| %>
+    <%= t.label :name %>
+    <%= t.text_field :name %>
+	<%= t.label :code %>
+	<%= t.text_field :code %>
+	<%= t.label :description %>
+	<%= t.text_field :description %>
+	<%= t.label :active %>
+	<%= t.check_box :active %>
+    <%= t.submit %>
+<% end %>

@@ -1,0 +1,27 @@
+<h1>Available Types</h1>
+
+<table>
+   <tr>
+   	  <th>Name</th>
+   	  <th>Code</th>
+   	  <th>Description</th>
+   	  <th>Active</th>
+   	  <th></th>
+   	  <th></th>
+   </tr>
+
+   <% for type in @type_sets %>
+     <tr id="type_set_<%= type.id %>">
+     	<td><%= type.name %></td>
+     	<td><%= type.code %></td>
+     	<td> <%= type.description %> </td>
+     	<td> <%= type.active %> </td>
+      <td> <%= link_to 'Edit', edit_type_set_path(type) %></td>
+      <td> <%= link_to 'Delete', type, method: :destroy, data: {confirm: 'Are you sure ?'} %> </td>
+     </tr>
+   <% end %> 
+</table>
+
+<br>
+
+<%= link_to 'Create Type', new_type_set_path %>

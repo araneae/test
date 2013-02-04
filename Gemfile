@@ -36,3 +36,20 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+group :test, :development do
+  gem 'turn'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+#  gem 'growl_notify'
+#  gem 'ruby_gntp'
+  gem 'launchy'
+end
+
+# memcahce gem
+gem 'dalli'
+
+group :production do
+  # gem 'pg', '0.12.2'
+end

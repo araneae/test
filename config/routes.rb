@@ -1,4 +1,10 @@
 Spider::Application.routes.draw do
+  
+  root :to => 'TypeSets#index'
+
+  # http verbs for type_set
+  resources :type_sets
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
