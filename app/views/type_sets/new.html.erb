@@ -1,13 +1,21 @@
-<h2>Create New Type</h2>
+<div class="center hero-unit">
+	<h2>Create New Type</h2>
 
-<%= form_for @type_set do |t| %>
-    <%= t.label :name %>
-    <%= t.text_field :name %>
-	<%= t.label :code %>
-	<%= t.text_field :code %>
-	<%= t.label :description %>
-	<%= t.text_field :description %>
-	<%= t.label :active %>
-	<%= t.check_box :active %>
-    <%= t.submit %>
-<% end %>
+    <div class="row">
+    	<div class="span6 offset3">
+			<%= form_for @type_set do |t| %>
+			    <%= t.label :name %>
+			    <%= t.text_field :name %>
+				<%= t.label :code %>
+				<%= t.text_field :code %>
+				<%= t.label :description %>
+				<%= t.text_field :description %>
+				<%= t.label :active %>
+				<%= t.check_box :active %>
+				<br/>
+				<br/>
+			    <%= t.submit "Create Type", class: "btn btn-large btn-primary"%>
+			<% end %>
+		</div>
+	</div>
+</div>

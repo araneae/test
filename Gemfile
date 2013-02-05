@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+gem 'bootstrap-sass', '2.0.0'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -45,6 +47,9 @@ group :test, :development do
 #  gem 'growl_notify'
 #  gem 'ruby_gntp'
   gem 'launchy'
+
+  gem 'guard-spork'
+  gem 'spork'
 end
 
 # memcahce gem

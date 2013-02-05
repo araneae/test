@@ -1,0 +1,19 @@
+<% flash.each do |name, message| %>
+ <%= content_tag :div, message, :id => "flash_#{name}" %>
+<% end %>
+
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+	<div class="container">
+	<h1> Spider App</h1>
+	<nav>
+	<ul class="nav pull-right">
+	<li><%= link_to "Home", root_path %></li>
+	<li><%= link_to "Help", help_path %></li>
+	<li><%= link_to "Admin", admin_path %></li>
+	<li><%= link_to "Sign in", '#' %></li>
+	</ul>
+	</nav>
+	</div>
+	</div>
+</header>

@@ -1,23 +1,24 @@
 require 'spec_helper'
 
 describe 'TypeSet' do 
+
+	subject { page }
+
 	before do
         @type_set = TypeSet.create :code => "equipment_type", :description => "This set contains all equipment types", :active => true
 	end
 
 	describe "GET /type_sets" do
-     	it "should display all available types" do
-     		visit type_sets_path
-
-     		page.should have_content "equipment_type"
-     	end
+		before { visit type_sets_path }
+     	
+     	it { should have_content "equipment_type" }
 	end
 
 	describe "GET /type_sets/new" do
 		it "should create a new type" do
 			visit type_sets_path
 
-			page.should have_content "equipment_type"
+			should have_content "equipment_type"
 
 			click_link 'Create Type'
 
@@ -25,21 +26,21 @@ describe 'TypeSet' do
 
 			fill_in 'Code', :with => "user_type"
 
-			click_button 'Create Type set'
+			click_button 'Create Type'
 
 			current_path.should == type_sets_path
 
-            page.should have_content "Type was successfully created."
+            should have_content "Type was successfully created."
 
-			page.should have_content "equipment_type"
+			should have_content "equipment_type"
 
-			page.should have_content "user_type"
+			should have_content "user_type"
 		end
 
 		it "shouldn't create an invalid type" do
 			visit type_sets_path
 
-			page.should have_content "equipment_type"
+			should have_content "equipment_type"
 
 			click_link 'Create Type'
 
@@ -47,11 +48,11 @@ describe 'TypeSet' do
 
 			fill_in 'Code', :with => ""
 
-			click_button 'Create Type set'
+			click_button 'Create Type'
 
 			current_path.should == new_type_set_path
 
-            page.should have_content "There was an error creating the type."
+            should have_content "There was an error creating the type."
 		end
 	end
 
@@ -60,17 +61,17 @@ describe 'TypeSet' do
 		it "should update topic type" do
 			visit type_sets_path
 
-			page.should have_content 'equipment_type'
+			should have_content 'equipment_type'
 
 			find("#type_set_#{@type_set.id}").click_link 'Edit'
 
 			fill_in 'Code', :with => 'user_type'
 
-			click_button 'Update Type set'
+			click_button 'Update Type'
 
-			page.should have_content "The type has successfully been updated."
+			should have_content "The type has successfully been updated."
 
-	  		page.should have_content "user_type"
+	  		should have_content "user_type"
 	  	end 
 	end
 	
