@@ -5,7 +5,7 @@ describe 'TypeSet' do
 	subject { page }
 
 	before do
-        @type_set = TypeSet.create :code => "equipment_type", :description => "This set contains all equipment types", :active => true
+        @type_set = TypeSet.create code: "equipment_type", description: "This set contains all equipment types", active: true
 	end
 
 	describe "GET /type_sets" do
@@ -20,9 +20,11 @@ describe 'TypeSet' do
 
 			should have_content "equipment_type"
 
-			click_link 'Create Type'
+			click_link 'Add a new Type'
 
 			current_path.should == new_type_set_path
+
+			should have_link 'Back'
 
 			fill_in 'Code', :with => "user_type"
 
@@ -42,7 +44,7 @@ describe 'TypeSet' do
 
 			should have_content "equipment_type"
 
-			click_link 'Create Type'
+			click_link 'Add a new Type'
 
 			current_path.should == new_type_set_path
 
@@ -65,6 +67,10 @@ describe 'TypeSet' do
 
 			find("#type_set_#{@type_set.id}").click_link 'Edit'
 
+            should have_content 'Edit Type'
+
+			should have_link 'Back'
+
 			fill_in 'Code', :with => 'user_type'
 
 			click_button 'Update Type'
@@ -72,6 +78,23 @@ describe 'TypeSet' do
 			should have_content "The type has successfully been updated."
 
 	  		should have_content "user_type"
+	  	end 
+	end
+
+	describe "GET /type_sets/id/show" do
+
+		it "should show topic type" do
+			visit type_sets_path
+
+			should have_content 'equipment_type'
+
+			find("#type_set_#{@type_set.id}").click_link 'equipment_type'
+
+			current_path.should == type_set_path(@type_set)
+
+			should have_content 'Type Details'
+
+			should have_link 'Back'
 	  	end 
 	end
 	

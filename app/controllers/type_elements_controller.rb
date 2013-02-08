@@ -1,0 +1,2 @@
+class TypeElementsController < ApplicationController
+end

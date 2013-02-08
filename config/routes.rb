@@ -7,7 +7,9 @@ Spider::Application.routes.draw do
   root :to => 'static_pages#home'
 
   # http verbs for type_set
-  resources :type_sets
+  resources :type_sets do
+     resources :type_elements
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

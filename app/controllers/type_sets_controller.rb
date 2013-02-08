@@ -31,4 +31,8 @@ class TypeSetsController < ApplicationController
     end
   end
 
+  def show
+    @type_set = TypeSet.find params[:id]
+  end
+
 end

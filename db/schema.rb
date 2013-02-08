@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203200224) do
+ActiveRecord::Schema.define(:version => 20130207005546) do
 
   create_table "type_elements", :force => true do |t|
     t.string   "code"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(:version => 20130203200224) do
     t.boolean  "active"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "type_set_id"
   end
+
+  add_index "type_elements", ["type_set_id"], :name => "index_type_elements_on_type_set_id"
 
   create_table "type_sets", :force => true do |t|
     t.string   "code"

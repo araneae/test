@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-gem 'bootstrap-sass', '2.0.0'
+gem 'simple_form'
+
+gem 'bootstrap-sass', '2.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -38,7 +40,7 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'sqlite3'
-  gem 'turn'
+#  gem 'turn'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'guard-rspec'
@@ -48,6 +50,9 @@ group :test, :development do
 
   gem 'guard-spork'
   gem 'spork'
+
+  gem 'annotate', ">=2.5.0"
+  gem 'factory_girl_rails', '>=1.4.0'
 end
 
 # memcahce gem

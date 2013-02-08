@@ -1,0 +1,23 @@
+<%= form_for([@type_set, @type_set.type_elements.build]) do |t| %>
+    <p>
+        <%= t.label :name %>
+        <%= t.text_field :name %>
+    </p>
+      <p>
+      <%= t.label :code %>
+      <%= t.text_field :code %>
+    </p>
+    <p>
+      <%= t.label :description %>
+      <%= t.text_field :description %>
+    </p>
+    <p>
+        <%= t.label :active %>
+      <%= t.check_box :active %>
+    </p>
+    <p>
+    <% unless button_label.nil? %>
+       <%= t.submit button_label, class: "btn btn-large btn-primary" %> 
+    <% end %>
+    </p>
+<% end %>

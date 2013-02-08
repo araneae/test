@@ -7,7 +7,7 @@ describe "StaticPages" do
   	describe "Home Page" do
   		before { visit root_path }
 
-    	it { should have_selector('h1', text: 'Spider App') }
+    	it { should have_selector('h2', text: 'Spider App') }
     	it { should have_content('Home') }
 		it { should have_content('Help') }
 		it { should have_content('Admin') }
@@ -16,13 +16,13 @@ describe "StaticPages" do
   	describe "Help Page" do
   		before { visit help_path }
 
-      	it { should have_selector('h1', text: 'Help') }
+      	it { should have_selector('h2', text: 'Help') }
 	end
 
 	describe "About Page" do
 		before { visit about_path }
 
-      	it { should have_selector('h1', text: 'About') }
+      	it { should have_selector('h2', text: 'About') }
 	end
 
 	describe "Admin Page" do

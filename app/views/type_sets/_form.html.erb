@@ -1,0 +1,11 @@
+<%= simple_form_for( type_set, :html => { :class => 'form-horizontal'} ) do |f| %>
+	<%= f.input :code %>
+	<%= f.input :name %>
+	<%= f.input :description %>
+  	<p>
+		<% unless button_label.nil? %>
+		   <%= f.submit button_label, class: "btn btn-large btn-primary" %> 
+		<% end %>
+    </p>
+
+<% end %>
