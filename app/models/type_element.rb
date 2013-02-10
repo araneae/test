@@ -15,6 +15,8 @@
 class TypeElement < ActiveRecord::Base
   attr_accessible :active, :code, :description, :name
 
+  validates :code, presence: true
+
   belongs_to :type_set
 
   has_many :children, class_name: "TypeElement"

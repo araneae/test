@@ -35,4 +35,8 @@ class TypeSetsController < ApplicationController
     @type_set = TypeSet.find params[:id]
   end
 
+  def destroy
+      TypeSet.destroy params[:id]
+      redirect_to :back, :notice => "Type has been deleted"
+  end
 end

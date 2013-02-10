@@ -1,4 +1,4 @@
-<%= form_for([@type_set, @type_set.type_elements.build]) do |t| %>
+<%= form_for([type_set, type_element]) do |t| %>
     <p>
         <%= t.label :name %>
         <%= t.text_field :name %>

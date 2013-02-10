@@ -26,7 +26,7 @@ describe 'TypeSet' do
 
 			should have_link 'Back'
 
-			fill_in 'Code', :with => "user_type"
+			fill_in 'Code', with: "user_type"
 
 			click_button 'Create Type'
 
@@ -48,7 +48,7 @@ describe 'TypeSet' do
 
 			current_path.should == new_type_set_path
 
-			fill_in 'Code', :with => ""
+			fill_in 'Code', with: ""
 
 			click_button 'Create Type'
 
@@ -71,7 +71,7 @@ describe 'TypeSet' do
 
 			should have_link 'Back'
 
-			fill_in 'Code', :with => 'user_type'
+			fill_in 'Code', with: 'user_type'
 
 			click_button 'Update Type'
 
