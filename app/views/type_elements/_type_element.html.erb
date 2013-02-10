@@ -3,7 +3,11 @@
 	<td><%= type_element.name %> </td>
 	<td><%= type_element.code %> </td>
 	<td> <%= type_element.description %> </td>
-	<td> <%= image_tag(type_element.picture, :size => "64x64", alt: "") %> </td>
+	<% unless type_element.picture.blank? %>
+	    <td> <%= image_tag(type_element.picture, :size => "64x64", alt: "") %> </td>
+	<% else %>
+	    <td> </td>
+	<% end %>
 	<td> <%= link_to 'Edit', edit_type_set_type_element_path(type_element.type_set, type_element) %> </td>
 	<td> <%= link_to 'Delete', [type_element.type_set, type_element], method: 'delete', data: {confirm: 'Are you sure ?'} %> </td>
 </tr>

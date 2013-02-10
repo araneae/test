@@ -20,7 +20,11 @@
           <td><%= type.name %></td>
           <td><%= link_to type.code , type_set_path(type) %></td>
           <td> <%= type.description %> </td>
-          <td> <%= image_tag(type.picture, :size => "64x64", alt: "") %> </td>
+          <% unless type.picture.blank? %>
+              <td> <%= image_tag(type.picture, :size => "64x64", alt: "") %> </td>
+          <% else %>
+              <td> </td>
+          <% end %>
           <td> <%= link_to 'Edit', edit_type_set_path(type) %></td>
           <td> <%= link_to 'Delete', type, method: 'delete', data: {confirm: 'Are you sure ?'} %> </td>
          </tr>
