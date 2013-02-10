@@ -13,7 +13,7 @@
 #
 
 class TypeElement < ActiveRecord::Base
-  attr_accessible :active, :code, :description, :name
+  attr_accessible :active, :code, :description, :name, :picture
 
   validates :code, presence: true
 

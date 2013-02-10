@@ -1,23 +1,12 @@
-<%= form_for([type_set, type_element]) do |t| %>
-    <p>
-        <%= t.label :name %>
-        <%= t.text_field :name %>
-    </p>
-      <p>
-      <%= t.label :code %>
-      <%= t.text_field :code %>
-    </p>
-    <p>
-      <%= t.label :description %>
-      <%= t.text_field :description %>
-    </p>
-    <p>
-        <%= t.label :active %>
-      <%= t.check_box :active %>
-    </p>
-    <p>
+<%= simple_form_for( [type_set, type_element], :html => { :class => 'form-horizontal'} ) do |f| %>
+  <%= f.input :code %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :picture %>
+  <%= f.input :active %>
+  <p>
     <% unless button_label.nil? %>
-       <%= t.submit button_label, class: "btn btn-large btn-primary" %> 
+       <%= f.submit button_label, class: "btn btn-large btn-primary" %> 
     <% end %>
-    </p>
+  </p>
 <% end %>

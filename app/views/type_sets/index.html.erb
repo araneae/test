@@ -8,6 +8,7 @@
         <th colspan="1">Name</th>
         <th colspan="1">Code</th>
         <th colspan="1">Description</th>
+        <th colspan="1">Thumbnail</th>
         <th colspan="1"></th>
         <th colspan="1"></th>
     </tr>
@@ -19,6 +20,7 @@
           <td><%= type.name %></td>
           <td><%= link_to type.code , type_set_path(type) %></td>
           <td> <%= type.description %> </td>
+          <td> <%= image_tag(type.picture, :size => "64x64", alt: "") %> </td>
           <td> <%= link_to 'Edit', edit_type_set_path(type) %></td>
           <td> <%= link_to 'Delete', type, method: 'delete', data: {confirm: 'Are you sure ?'} %> </td>
          </tr>
