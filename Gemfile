@@ -44,8 +44,10 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'guard-rspec'
-#  gem 'growl_notify'
-#  gem 'ruby_gntp'
+  #gem 'growl_notify'
+  gem 'ruby_gntp'
+  gem 'growl'
+  #gem 'terminal-notifier-guard'
   gem 'launchy'
 
   gem 'guard-spork'

@@ -1,0 +1,36 @@
+Data Migration:
+
+Apply migration:
+
+  $rake db:migrate
+
+Rollback:
+
+  $ rake db:rollback
+
+Rollback to beginning:
+
+  $ rake db:migrate VERSION=0 RAILS_ENV=test/development/production
+
+Migration on production environment:
+
+  $rake db:migrate RAILS_ENV=production / test / development
+
+Running rails console on a environment:
+
+  $ rails console test
+  Loading test environment
+  >> Rails.env
+  => "test"
+  >> Rails.env.test?
+  => true
+
+Starting rails server on an environment:
+  $ rails server --environment production
+
+
+Git specific commend
+  o committing change
+     $git commit -m "comments"
+     $git status
+     $git push
