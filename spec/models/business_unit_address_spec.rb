@@ -4,8 +4,8 @@ describe BusinessUnitAddress do
   
   before do
     @company = BusinessUnit.create(name: "ABC Company", business_unit_type: "company")
-    @address = Address.create(street: "123 abc road", street2: "apt 2", city: "san carlos", state: "california", zip_code: "12345", \
-                                          country: "united states", country_code: "us", latitude: 123.78, longitude: 5452.67)
+    @address = Address.create(street: "123 abc road", street2: "apt 2", city: "san carlos", state_code: "ca", zip_code: "12345", \
+                                          country_code: "us", latitude: 123.78, longitude: 5452.67)
     @billing_address = BusinessUnitAddress.new(name: "billing address", address_type: "billing_address")
   end
 

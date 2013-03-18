@@ -3,6 +3,7 @@ Spider::Application.routes.draw do
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/admin', to: 'static_pages#admin'
+  match '/autocomplete/addresses', to: "autocomplete#addresses"
 
   root :to => 'static_pages#home'
 

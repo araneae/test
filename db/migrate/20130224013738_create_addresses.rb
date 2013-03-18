@@ -6,10 +6,10 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :street
       t.string :street2
       t.string :city, null: false
-      t.string :state, null: false
+      t.string :state_code, null: false
       t.string :zip_code
-      t.string :country, null: false
       t.string :country_code, null: false
+      t.string :address, null: false
       t.float :latitude
       t.float :longitude
 
@@ -17,5 +17,7 @@ class CreateAddresses < ActiveRecord::Migration
     end
 
     add_index :addresses, :hash_key, unique: true
+    add_index :addresses, :address, unique: true
+    add_index :addresses, :city
   end
 end

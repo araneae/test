@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Route do
   before do
-    @org_address = Address.create(city: "san carlos", state: "california", zip_code: "12345", \
-                                          country: "united states", country_code: "us", latitude: 123.78, longitude: 5452.67)
-    @dest_address = Address.create(city: "san francisco", state: "california", zip_code: "67547", \
-                                          country: "united states", country_code: "us", latitude: 120.78, longitude: 5452.67)
+    @org_address = Address.create(city: "san carlos", state_code: "ca", zip_code: "12345", \
+                                          country_code: "us", latitude: 123.78, longitude: 5452.67)
+    @dest_address = Address.create(city: "san francisco", state_code: "ca", zip_code: "67547", \
+                                          country_code: "us", latitude: 120.78, longitude: 5452.67)
 
     @route = Route.new(provider: "me", distance: 120.5, distance_unit_type: "ML", route_type: "RD", \
                     refreshed_on: DateTime.now)

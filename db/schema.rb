@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(:version => 20130305221850) do
     t.string   "street"
     t.string   "street2"
     t.string   "city",         :null => false
-    t.string   "state",        :null => false
+    t.string   "state_code",   :null => false
     t.string   "zip_code"
-    t.string   "country",      :null => false
     t.string   "country_code", :null => false
+    t.string   "address",      :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at",   :null => false
@@ -121,12 +121,23 @@ ActiveRecord::Schema.define(:version => 20130305221850) do
   add_index "routes", ["origin_address_id", "destination_address_id", "route_type"], :name => "index_routes_on_org_and_dest_addr_ids_and_route_type_code", :unique => true
 
   create_table "trucks", :force => true do |t|
-    t.string   "name",                  :null => false
-    t.string   "equipment_type",        :null => false
-    t.string   "license_number"
+    t.string   "name",                                            :null => false
+    t.string   "equipment_type",                                  :null => false
+    t.integer  "business_unit_id",                                :null => false
+    t.string   "status_code",                                     :null => false
+    t.string   "registration_number",                             :null => false
+    t.date     "registered_on",                                   :null => false
+    t.date     "registration_expires_on",                         :null => false
     t.string   "city_registered"
-    t.string   "state_registered"
-    t.string   "country_registered"
+    t.string   "state_registered",                                :null => false
+    t.string   "country_registered",                              :null => false
+    t.string   "registration_authority",                          :null => false
+    t.boolean  "is_registration_renewable",     :default => true, :null => false
+    t.string   "insurance_number",                                :null => false
+    t.date     "insuranced_on",                                   :null => false
+    t.date     "insuranced_expires_on",                           :null => false
+    t.string   "insurance_provider",                              :null => false
+    t.string   "insurance_provider_address_id",                   :null => false
     t.string   "vin"
     t.string   "engine_number"
     t.string   "chassis_number"
@@ -141,8 +152,13 @@ ActiveRecord::Schema.define(:version => 20130305221850) do
     t.string   "volume_unit_type"
     t.float    "floor_space"
     t.string   "floor_space_unit_type"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.string   "driver_full_name"
+    t.string   "driver_license_number"
+    t.date     "driver_license_expires_on"
+    t.string   "created_by"
+    t.string   "modified_by"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "type_elements", :force => true do |t|

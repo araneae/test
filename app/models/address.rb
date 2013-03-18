@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
-  attr_accessible :hash_key, :street, :street2, :city, :state, :zip_code, :country, :country_code, :latitude, :longitude
+  attr_accessible :hash_key, :street, :street2, :city, :state_code, :zip_code
+  attr_accessible :country_code, :address, :latitude, :longitude
 
   zip_regex_usa = %r{^\d{5}(-\d{4})?$}
   zip_regex_canada = %r{[ABCEGHJKLMNPRSTVXY]\d[A-Z] \d[A-Z]\d}
@@ -7,8 +8,7 @@ class Address < ActiveRecord::Base
 
   # validation
   validates_presence_of :city, message: "city_in_address_is_null" 
-  validates_presence_of :state, message: "state_in_address_is_null" 
-  validates_presence_of :country, message: "country_in_address_is_null" 
+  validates_presence_of :state_code, message: "state_code_in_address_is_null" 
   validates_presence_of :country_code, message: "country_code_in_address_is_null" 
   validates :hash_key, uniqueness: true
   validates_format_of :zip_code, allow_blank: true, with: zip_regex_usa, :if => :address_in_usa?, message: "zip_code_format_in_address_is_invalid_for_us" 
@@ -19,14 +19,9 @@ class Address < ActiveRecord::Base
 
   # helper methods
   def generate_hash
+    generate_address_field
     address_string=''
-    address_string<<self.street unless self.street.blank?
-    address_string<<' '<<self.street2 unless self.street2.blank?
-    address_string<<' '<<self.city unless self.city.blank?
-    address_string<<' '<<self.state unless self.state.blank?
-    address_string<<' '<<self.zip_code unless self.zip_code.blank?
-    address_string<<' '<<self.country_code unless self.country.blank?
-    address_string.squeeze(' ').downcase unless address_string.blank?
+    address_string=address.downcase unless address.blank?
     self.hash_key=nil if address_string.blank?
     self.hash_key=Digest::MD5.hexdigest(address_string) unless address_string.blank?
   end 
@@ -39,13 +34,28 @@ class Address < ActiveRecord::Base
   end 
 
   def squeeze_fields
-    self.street=self.street.titleize.squeeze(' ') unless self.street.blank?
-    self.street2=self.street2.titleize.squeeze(' ') unless self.street2.blank?
-    self.city=self.city.titleize.squeeze(' ') unless self.city.blank?
-    self.state=self.state.upcase.squeeze(' ') unless self.state.blank?
+    self.street=self.street.squeeze(' ') unless self.street.blank?
+    self.street2=self.street2.squeeze(' ') unless self.street2.blank?
+    self.city=self.city.squeeze(' ') unless self.city.blank?
+    self.state_code=self.state_code.upcase.squeeze(' ') unless self.state_code.blank?
     self.zip_code=self.zip_code.upcase.squeeze(' ') unless self.zip_code.blank?
-    self.country=self.country.upcase.squeeze(' ') unless self.country.blank?
     self.country_code=self.country_code.upcase.squeeze(' ') unless self.country_code.blank?
+  end
+
+  def generate_address_field
+    self.address=''
+    self.address<<self.street unless self.street.blank?
+    self.address<< ', ' unless self.address.blank? or self.street2.blank?
+    self.address<<self.street2 unless self.street2.blank?
+    self.address<< ', ' unless self.address.blank? or self.city.blank?
+    self.address<<self.city unless self.city.blank?
+    self.address<< ', ' unless self.address.blank? or self.state_code.blank?
+    self.address<<self.state_code unless self.state_code.blank? 
+    self.address<< ' ' unless self.address.blank? or self.zip_code.blank?
+    self.address<<self.zip_code unless self.zip_code.blank?
+    self.address<< ', ' unless self.address.blank? or self.country_code.blank?
+    self.address<<self.country_code unless self.country_code.blank?
+    self.address=self.address.squeeze(' ') unless self.address.blank?
   end
 
   def address_in_usa?
