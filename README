@@ -1,3 +1,13 @@
+
+Heroku URL:
+
+http://still-inlet-9830.herokuapp.com/
+
+git push heroku master
+
+heroku run rake db:migrate
+
+
 Data Migration:
 
 Apply migration:

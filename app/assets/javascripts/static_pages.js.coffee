@@ -16,7 +16,8 @@ $(document).ready ->
                         data: {query: query},
                         dataType: 'json',
                         success: (data) ->
-                           console.log(data)
+                           if (window.console && window.console.log)
+                              window.console.log(data)
                            address_names = []
                            window.address_map = {}
 
