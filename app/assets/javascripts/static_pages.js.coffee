@@ -7,15 +7,16 @@ $(document).ready ->
       window.last_query=''
       $('#txt_state').typeahead
           source: (query, process) ->
-                    if (window.running) 
-                        return
+                    if (window.running)
+                        if (window.address_names.length > 0) 
+                          return process(window.address_names)
 
-                    if (window.last_query.length > 0)   
-                      regx = new RegExp('^'+window.last_query, 'i')
-                      n = query.match(regx)
-                      if (n)
-                         process(window.address_names)
-                         return
+                    #if (window.last_query.length > 0)   
+                      #regx = new RegExp('^'+window.last_query, 'i')
+                      #n = query.match(regx)
+                      #if (n)
+                      #   process(window.address_names)
+                      #   return
       
                     window.running = true
                     window.last_query = query
@@ -25,6 +26,7 @@ $(document).ready ->
                         data: {query: query},
                         dataType: 'json',
                         success: (data) ->
+                           window.running=false
                            if (window.console && window.console.log)
                               window.console.log('received data from server, length:'+data.length)
                            window.address_names = []
@@ -35,7 +37,6 @@ $(document).ready ->
                                   window.address_map[address.name] = address;
                                   window.address_names.push(address.name);
                                );
-                           window.running=false
                            process(window.address_names)
                         )
           updater: (item) ->
