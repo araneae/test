@@ -1,12 +1,21 @@
 
 Heroku URL:
 
-http://still-inlet-9830.herokuapp.com/
+  http://still-inlet-9830.herokuapp.com/
 
-git push heroku master
+  git push heroku master
 
-heroku run rake db:migrate
+  heroku run rake db:migrate
 
+Memcached Installtion (Mac OS):
+  brew install memcached
+
+  To have launchd start memcached at login:
+    ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+  Then to load memcached now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+  Or, if you don't want/need launchctl, you can just run:
+    /usr/local/opt/memcached/bin/memcached
 
 Data Migration:
 

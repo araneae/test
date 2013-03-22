@@ -4,12 +4,21 @@
 
 $(document).ready ->
       window.running=false
+      window.last_query=''
       $('#txt_state').typeahead
           source: (query, process) ->
                     if (window.running) 
                         return
-                    
+
+                    if (window.last_query.length > 0)   
+                      regx = new RegExp('^'+window.last_query, 'i')
+                      n = query.match(regx)
+                      if (n)
+                         process(window.address_names)
+                         return
+      
                     window.running = true
+                    window.last_query = query
                     $.ajax(
                         url: "/autocomplete/addresses",
                         type: 'get',
@@ -17,17 +26,17 @@ $(document).ready ->
                         dataType: 'json',
                         success: (data) ->
                            if (window.console && window.console.log)
-                              window.console.log(data)
-                           address_names = []
+                              window.console.log('received data from server, length:'+data.length)
+                           window.address_names = []
                            window.address_map = {}
 
                            $.each(data, 
                                (i, address) ->
                                   window.address_map[address.name] = address;
-                                  address_names.push(address.name);
+                                  window.address_names.push(address.name);
                                );
                            window.running=false
-                           process(address_names)
+                           process(window.address_names)
                         )
           updater: (item) ->
                   window.selected_id = window.address_map[item].id;

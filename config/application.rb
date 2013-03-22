@@ -61,5 +61,9 @@ module Spider
 
     # ensuring that Rails throws errors on invalid mass assignment
     config.active_record.whitelist_attributes = true
+
+    # use dalli (memcached) for low level caching
+    ##config.cache_store = :dalli_store
+    config.cache_store = :memory_store
   end
 end
